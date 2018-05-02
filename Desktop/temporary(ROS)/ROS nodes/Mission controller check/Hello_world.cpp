@@ -24,7 +24,7 @@ void pictureCallback(const dji_sdk::path::ConstPtr& msg)
  //First we just check if the writer works (not collected data) and then we check the rest
 //We don't use any function or anything like this
     
-    string xml="/home/nico/Desktop/test.xml";
+    std::string xml="/home/nico/Desktop/test.xml";
     TiXmlDocument doc(xml.c_str()); //We open an existing document
     if (doc.LoadFile()) {
         TiXmlHandle docHandle(&doc);
@@ -39,13 +39,13 @@ void pictureCallback(const dji_sdk::path::ConstPtr& msg)
         }
     }
     
-    else cout << "error loading file" << endl;
+    else std::cout << "error loading file" << std::endl;
     
     if(doc.SaveFile(xml.c_str())){
-        cout << "file saved succesfully.\n";
+        std::cout << "file saved succesfully.\n";
         
     }
-    else cout << "error saving file" << endl;
+    else std::cout << "error saving file" << std::endl;
     
     
     //if(loadXML() == FAILURE)
