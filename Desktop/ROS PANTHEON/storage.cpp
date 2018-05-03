@@ -2,7 +2,6 @@
 #include <std_msgs/Float32MultiArray.h> //Just in case we also add the multiarray part
 #include <std_msgs/MultiArrayDimension.h>
 #include "ros/ros.h"
-//#include "dji_sdk_demo/storage3.h"
 #include <time.h>
 #include "std_msgs/String.h"
 #include <stdlib.h>
@@ -22,7 +21,7 @@ void pictureCallback(const dji_sdk::picture::ConstPtr& msg)
     sensor_msgs::NavSatFix current_gps = msg->gps_position;
     sensor_msgs::Imu current_imu = msg->imu;
     geometry_msgs::Quaternion current_atti = msg->Attitude;
-    geometry_msgs::Vector3Stamped current_velocity = msg->velocity;
+    geometry_msgs::Vector3 current_velocity = msg->velocity.vector;
     ros::Time Time_stamp = msg->gps_position.header.stamp;
     
     //That is one way to do it
@@ -30,14 +29,14 @@ void pictureCallback(const dji_sdk::picture::ConstPtr& msg)
     std::string gps_latitude = boost::lexical_cast<std::string>(current_gps.latitude);
     std::string gps_altitude = boost::lexical_cast<std::string>(current_gps.altitude);
     
-    std::string attitude_x = boost::lexical_cast<std::string>(Attitude.x);
-    std::string attitude_y = boost::lexical_cast<std::string>(Attitude.y);
-    std::string attitude_z = boost::lexical_cast<std::string>(Attitude.z);
-    std::string attitude_w = boost::lexical_cast<std::string>(Attitude.w);
+    std::string attitude_x = boost::lexical_cast<std::string>(current_atti.x);
+    std::string attitude_y = boost::lexical_cast<std::string>(current_atti.y);
+    std::string attitude_z = boost::lexical_cast<std::string>(current_atti.z);
+    std::string attitude_w = boost::lexical_cast<std::string>(current_atti.w);
     
-    std::string velocity_x = boost::lexical_cast<std::string>(velocity.x);
-    std::string velocity_y = boost::lexical_cast<std::string>(velocity.y);
-    std::string velocity_z = boost::lexical_cast<std::string>(velocity.z);
+    std::string velocity_x = boost::lexical_cast<std::string>(current_velocity.x);
+    std::string velocity_y = boost::lexical_cast<std::string>(current_velocity.y);
+    std::string velocity_z = boost::lexical_cast<std::string>(current_velocity.z);
     
     std::string Time = boost::lexical_cast<std::string>(Time_stamp);
     

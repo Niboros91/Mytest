@@ -56,10 +56,10 @@ int main(int argc, char** argv)
     //Main part
     //Camera characteristics should be written in a parameter service
     //Thermal camera
-    nh.param("Thermal_FOV_x", Thermal.FOV_x, 32);
-    nh.param("Thermal_FOV_y", Thermal.FOV_y, 26);
-    nh.param("Thermal_RES_x", Thermal.RES_x, 640);
-    nh.param("Thermal_RES_y", Thermal.RES_y, 512);
+    nh.param("Thermal/FOV/x", Thermal.FOV_x, 32);
+    nh.param("Thermal/FOV/y", Thermal.FOV_y, 26);
+    nh.param("Thermal/RES/x", Thermal.RES_x, 640);
+    nh.param("Thermal/RES/y", Thermal.RES_y, 512);
     
     //getParam("Thermal",Thermal);
     //Try also if it does work this way
@@ -67,16 +67,16 @@ int main(int argc, char** argv)
     //Another way would be: nh.param("Thermal/FOV/y", Thermal.FOV_y, 26); camera also?
     
     //Multispectral camera
-    nh.param("Multispectral_FOV_x", Multi.FOV_x, 35);//CHange
-    nh.param("Multispectral_FOV_y", Multi.FOV_y, 24);
-    nh.param("Multispectral_RES_x", Multi.RES_x, 6000);
-    nh.param("Multispectral_RES_y", Multi.RES_y, 4000);
+    nh.param("Multispectral/FOV/x", Multi.FOV_x, 35);//CHange
+    nh.param("Multispectral/FOV/y", Multi.FOV_y, 24);
+    nh.param("Multispectral/RES/x", Multi.RES_x, 6000);
+    nh.param("Multispectral/RES/y", Multi.RES_y, 4000);
     
     //RGB camera
-    nh.param("Rgb_FOV_x", Rgb.FOV_x, 38);
-    nh.param("Rgb_FOV_y", Rgb.FOV_y, 30);
-    nh.param("Rgb_RES_x", Rgb.RES_x, 1280);
-    nh.param("Rgb_RES_y", Rgb.RES_y, 1024);
+    nh.param("Rgb/FOV/x", Rgb.FOV_x, 38);
+    nh.param("Rgb/FOV/y", Rgb.FOV_y, 30);
+    nh.param("Rgb/RES/x", Rgb.RES_x, 1280);
+    nh.param("Rgb/RES/y", Rgb.RES_y, 1024);
     
     
     //Inputs: Resolution (which it gives the altitude or we could have two functions and the user decides. But first only one way); Sector size
