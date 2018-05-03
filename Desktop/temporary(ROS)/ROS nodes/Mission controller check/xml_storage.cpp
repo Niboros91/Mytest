@@ -15,7 +15,7 @@
 
 
 
-void pictureCallback(const dji_sdk::path::ConstPtr& msg)
+void pictureCallback(const dji_sdk::test::ConstPtr& msg)
 {
 
 //We just enter when we get a message
@@ -48,8 +48,7 @@ void pictureCallback(const dji_sdk::path::ConstPtr& msg)
     else std::cout << "error saving file" << std::endl;
     
     
-    //if(loadXML() == FAILURE)
-       // return 1; //It is a void we don't return anything
+
     
    
 }
