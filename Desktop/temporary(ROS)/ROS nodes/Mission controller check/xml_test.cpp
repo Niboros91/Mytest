@@ -25,11 +25,11 @@ void pictureCallback(const dji_sdk::test::ConstPtr& msg)
 //We don't use any function or anything like this
    
     //A way to convert integers into strings
-    char buf[256];
-    snprintf(buf, sizeof(buf), "%d", i); //Later we can with i as an integer
+    //char buf[256];
+    //snprintf(buf, sizeof(buf), "%d", i); //Later we can with i as an integer
     
     //Later we can also try this way. It is more elegant
-   // std::string gps_position_x = boost::lexical_cast<std::string>(current_gps.longitude);
+    //std::string t = boost::lexical_cast<std::string>(i);
     
     std::string xml="/home/nico/Desktop/test.xml";
     TiXmlDocument doc(xml.c_str()); //We open an existing document
@@ -38,7 +38,7 @@ void pictureCallback(const dji_sdk::test::ConstPtr& msg)
         TiXmlElement* fileLog = docHandle.FirstChild("FileLog").ToElement();
         
         if (fileLog) { //If the element filelog exists, we add a new one
-            TiXmlElement recording("recording");
+            TiXmlElement recording("Picture");//We can change the name but it has to have no blanks
             
             recording.SetAttribute("id", i); //Check if there is a problem and we have to do it with other "instructions"
             
@@ -68,7 +68,7 @@ int main(int argc, char **argv)
   ros::NodeHandle n;
 
   
-  ros::Subscriber sub = n.subscribe("test", 1000, pictureCallback);
+  ros::Subscriber sub = n.subscribe("testing", 1000, pictureCallback);
   ros::spin();
 
   return 0;
