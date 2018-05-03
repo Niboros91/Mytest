@@ -26,14 +26,23 @@ void pictureCallback(const dji_sdk::picture::ConstPtr& msg)
     ros::Time Time_stamp = msg->gps_position.header.stamp;
     
     //That is one way to do it
-    std::string gps_position_x = boost::lexical_cast<std::string>(current_gps.longitude);
+    std::string gps_longitude = boost::lexical_cast<std::string>(current_gps.longitude);
+    std::string gps_latitude = boost::lexical_cast<std::string>(current_gps.latitude);
+    std::string gps_altitude = boost::lexical_cast<std::string>(current_gps.altitude);
+    
+    std::string attitude_x = boost::lexical_cast<std::string>(Attitude.x);
+    std::string attitude_y = boost::lexical_cast<std::string>(Attitude.y);
+    std::string attitude_z = boost::lexical_cast<std::string>(Attitude.z);
+    std::string attitude_w = boost::lexical_cast<std::string>(Attitude.w);
+    
+    std::string velocity_x = boost::lexical_cast<std::string>(velocity.x);
+    std::string velocity_y = boost::lexical_cast<std::string>(velocity.y);
+    std::string velocity_z = boost::lexical_cast<std::string>(velocity.z);
+    
+    std::string Time = boost::lexical_cast<std::string>(Time_stamp);
+    
+    //We try to use it like that. If it works we try later to use the messages directly
 
- //First we just check if the writer works (not collected data) and then we check the rest
-//We don't use any function or anything like this
-   
-    //A way to convert integers into strings
-    char buf[256];
-    snprintf(buf, sizeof(buf), "%d", i); //Later we can with i as an integer
     
     std::string xml="/home/nico/Desktop/test.xml";
     TiXmlDocument doc(xml.c_str()); //We open an existing document
@@ -42,10 +51,19 @@ void pictureCallback(const dji_sdk::picture::ConstPtr& msg)
         TiXmlElement* fileLog = docHandle.FirstChild("FileLog").ToElement();
         
         if (fileLog) { //If the element filelog exists, we add a new one
-            TiXmlElement recording("picture_taken");
+            TiXmlElement recording("Picture");
             
-            recording.SetAttribute("gps_position", gps_position_x); //Check if there is a problem and we have to do it with other "instructions"
+            recording.SetAttribute("ID", i);
+            recording.SetAttribute("gps_position_x", gps_longitude); //Check if there is a problem and we have to do it with other "instructions"
+            recording.SetAttribute("gps_position_y", gps_latitude);
+            recording.SetAttribute("gps_position_z", gps_altitude);
             
+            recording.SetAttribute("attitude_x", attitude_x);
+            recording.SetAttribute("attitude_y", attitude_y);
+            recording.SetAttribute("attitude_z", attitude_z);
+            recording.SetAttribute("attitude_w", attitude_w);
+            
+            recording.SetAttribute("Time", Time);
             fileLog->InsertEndChild(recording);
         }
     }
