@@ -1,5 +1,5 @@
 /*
- * mission_controller_local_coordinates.cpp
+ * mission_controller_v3.cpp
  *
  *  Created on: Feb 6, 2018
  *      Author: nicolas
@@ -62,7 +62,6 @@ Mission square_mission, picture_mission;
 //Defintion of the message
 	std_msgs::Float32MultiArray dat;
 
-
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "mission_controller");
@@ -81,7 +80,6 @@ int main(int argc, char** argv)
 
   // Publish the control signal
   ctrlPosYawPub = nh.advertise<sensor_msgs::Joy>("dji_sdk/flight_control_setpoint_ENUposition_yaw", 10);
-
   ctrlBrakePub = nh.advertise<sensor_msgs::Joy>("dji_sdk/flight_control_setpoint_generic", 10);
   PicturePub = nh.advertise<dji_sdk::picture>("picture_taken", 10);
 
@@ -137,7 +135,6 @@ lineOffset(bool passed,
         
         a=(target_offset_x-x0)/(target_offset_y-y0);//We calculate the slope
         k= a*target_offset_y+target_offset_x;//That depends on which is bigger x or y
-       // double current_point= current_gps.longitude * deg2rad * C_EARTH; We have already calculated the current point
         current_point= a*deltaNed.y+x0;
         initial= a*y0+x0;
     }
@@ -524,7 +521,6 @@ if(check==true){	//We start only after reading the path message
 	  state=1;
 	   break;
            }
-		//i=i+2;
         counter=counter+1;
 	
         //Do we add something here about the picture?
@@ -772,14 +768,7 @@ for(std::vector<float>::const_iterator it = msg->Lines.data.begin(); it != msg->
 	      //The first coordinate can be given in global coordinates
 	    square_mission.state = 1;
 	    ROS_INFO("##### Start route %d ....", square_mission.state);
-      /*   
-        picture_mission.reset();
-        picture_mission.start_gps_location = current_gps;
-        picture_mission.start_local_position = current_local_pos;
-        picture_mission.setTarget(pos[0], pos[1], altitude, 60); //The first coordinate can be given like that
-          //The first coordinate can be given in global coordinates
-        picture_mission.state = 1;
-          ROS_INFO("##### Picture mission started %d ....", picture_mission.state);*/
+
 	  }
 	check=true;
         ros::spin();
