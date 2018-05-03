@@ -13,7 +13,7 @@
 #include <string>
 #include <vector>
 
-
+ int i = 0;
 
 void pictureCallback(const dji_sdk::test::ConstPtr& msg)
 {
@@ -23,6 +23,13 @@ void pictureCallback(const dji_sdk::test::ConstPtr& msg)
 
  //First we just check if the writer works (not collected data) and then we check the rest
 //We don't use any function or anything like this
+   
+    //A way to convert integers into strings
+    char buf[256];
+    snprintf(buf, sizeof(buf), "%d", i); //Later we can with i as an integer
+    
+    //Later we can also try this way. It is more elegant
+   // std::string gps_position_x = boost::lexical_cast<std::string>(current_gps.longitude);
     
     std::string xml="/home/nico/Desktop/test.xml";
     TiXmlDocument doc(xml.c_str()); //We open an existing document
@@ -33,7 +40,7 @@ void pictureCallback(const dji_sdk::test::ConstPtr& msg)
         if (fileLog) { //If the element filelog exists, we add a new one
             TiXmlElement recording("recording");
             
-            recording.SetAttribute("id", 4);
+            recording.SetAttribute("id", i); //Check if there is a problem and we have to do it with other "instructions"
             
             fileLog->InsertEndChild(recording);
         }
@@ -49,7 +56,7 @@ void pictureCallback(const dji_sdk::test::ConstPtr& msg)
     
     
 
-    
+    i++;
    
 }
 
@@ -61,7 +68,7 @@ int main(int argc, char **argv)
   ros::NodeHandle n;
 
   
-  ros::Subscriber sub = n.subscribe("testing", 1000, pictureCallback);
+  ros::Subscriber sub = n.subscribe("test", 1000, pictureCallback);
   ros::spin();
 
   return 0;
