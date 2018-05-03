@@ -61,6 +61,11 @@ int main(int argc, char** argv)
     nh.param("Thermal_RES_x", Thermal.RES_x, 640);
     nh.param("Thermal_RES_y", Thermal.RES_y, 512);
     
+    //getParam("Thermal",Thermal);
+    //Try also if it does work this way
+    
+    //Another way would be: nh.param("Thermal/FOV/y", Thermal.FOV_y, 26); camera also?
+    
     //Multispectral camera
     nh.param("Multispectral_FOV_x", Multi.FOV_x, 35);//CHange
     nh.param("Multispectral_FOV_y", Multi.FOV_y, 24);
@@ -97,8 +102,13 @@ int main(int argc, char** argv)
     //We calculate the actual field of view for that resolution and its altitude
     X_picture=(resolution*Thermal.RES_x)/100;
     Y_picture=(resolution*Thermal.RES_y)/100;
+    //X_picture=(resolution*Thermal.RES.x)/100;
+    //Y_picture=(resolution*Thermal.RES.y)/100;
+   
+    
     //Size of the pixel at the altitude given
     altitude=(X_picture/2)/(tan((Thermal.FOV_x*C_PI)/180));
+    //altitude=(X_picture/2)/(tan((Thermal.FOV.x*C_PI)/180));
     
     // Now we have to see if x or y is bigger
     if (sector_x>sector_y){
