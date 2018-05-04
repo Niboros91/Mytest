@@ -2,7 +2,7 @@
 <node pkg="dji_sdk_demo" type="storage" name="xml_storer" output="screen">
 </node>
 <!-- node to be used as rosbag  (We can change the name to other thing)-->
-    <node pkg="rosbag" type="play" args="-o $(find dji_sdk_demo)/bags/Recording -a" name="record" output="screen"/>
+    <node pkg="rosbag" type="play" args="-o $(find dji_sdk_demo)/bags/Recording -a" name="reflight" output="screen"/>
 
 	<!-- topics to collect: /dji_sdk/localposition ; /dji_sdk/gps_position-->
 
