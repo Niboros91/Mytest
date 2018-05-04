@@ -1,0 +1,18 @@
+<launch>
+
+<!-- node to be used as rosbag  (We can change the name to other thing)-->
+    <node pkg="rosbag" type="record" args="-o $(find dji_sdk_demo)/bags/Recording -a" name="record" output="screen"/>
+
+	<!-- topics to collect: /dji_sdk/localposition ; /dji_sdk/gps_position-->
+
+	<!-- topics to collect:-a -->
+
+<!-- node to calculate the path and to store camera parameters -->
+
+<node pkg="dji_sdk_demo" type="path_planner" name="path_maker" output="screen" launch-prefix="gnome-terminal --command">
+<rosparam command="load" file="$(find dji_sdk_demo)/yaml/camera_settings.yaml" />
+</node>
+
+
+	
+</launch>
