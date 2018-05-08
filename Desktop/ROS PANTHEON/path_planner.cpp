@@ -56,28 +56,28 @@ int main(int argc, char** argv)
     //Main part
     //Camera characteristics should be written in a parameter service
     //Thermal camera
-    nh.param("Thermal/FOV/x", Thermal.FOV_x, 5000); //It should be 32, 5000 is for the test
-    nh.param("Thermal/FOV/y", Thermal.FOV_y, 26);
-    nh.param("Thermal/RES/x", Thermal.RES_x, 640);
-    nh.param("Thermal/RES/y", Thermal.RES_y, 512);
-    
-    ROS_INFO("The parameter used for the thermal camera is %d", Thermal.FOV_x);
-    //getParam("Thermal",Thermal);
+    nh.param("/Camera/Thermal/FOV/x", Thermal.FOV_x, 32); //It should be 32, 5000 is for the test
+    nh.param("/Camera/Thermal/FOV/y", Thermal.FOV_y, 26);
+    nh.param("/Camera/Thermal/RES/x", Thermal.RES_x, 640);
+    nh.param("/Camera/Thermal/RES/y", Thermal.RES_y, 512);
+
+    //ROS_INFO("The parameter used for the thermal camera is %d", Thermal.FOV_x);
+   
     //Try also if it does work this way
     
     //Another way would be: nh.param("Thermal/FOV/y", Thermal.FOV_y, 26); camera also?
     
     //Multispectral camera
-    nh.param("Multispectral/FOV/x", Multi.FOV_x, 35);//CHange
-    nh.param("Multispectral/FOV/y", Multi.FOV_y, 24);
-    nh.param("Multispectral/RES/x", Multi.RES_x, 6000);
-    nh.param("Multispectral/RES/y", Multi.RES_y, 4000);
+    nh.param("/Camera/Multispectral/FOV/x", Multi.FOV_x, 35);//CHange
+    nh.param("/Camera/Multispectral/FOV/y", Multi.FOV_y, 24);
+    nh.param("/Camera/Multispectral/RES/x", Multi.RES_x, 6000);
+    nh.param("/Camera/Multispectral/RES/y", Multi.RES_y, 4000);
     
     //RGB camera
-    nh.param("Rgb/FOV/x", Rgb.FOV_x, 38);
-    nh.param("Rgb/FOV/y", Rgb.FOV_y, 30);
-    nh.param("Rgb/RES/x", Rgb.RES_x, 1280);
-    nh.param("Rgb/RES/y", Rgb.RES_y, 1024);
+    nh.param("/Camera/Rgb/FOV/x", Rgb.FOV_x, 38);
+    nh.param("/Camera/Rgb/FOV/y", Rgb.FOV_y, 30);
+    nh.param("/Camera/Rgb/RES/x", Rgb.RES_x, 1280);
+    nh.param("/Camera/Rgb/RES/y", Rgb.RES_y, 1024);
     
     
     //Inputs: Resolution (which it gives the altitude or we could have two functions and the user decides. But first only one way); Sector size
