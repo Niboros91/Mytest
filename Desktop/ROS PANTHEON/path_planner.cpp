@@ -56,11 +56,12 @@ int main(int argc, char** argv)
     //Main part
     //Camera characteristics should be written in a parameter service
     //Thermal camera
-    nh.param("Thermal/FOV/x", Thermal.FOV_x, 32);
+    nh.param("Thermal/FOV/x", Thermal.FOV_x, 5000); //It should be 32, 5000 is for the test
     nh.param("Thermal/FOV/y", Thermal.FOV_y, 26);
     nh.param("Thermal/RES/x", Thermal.RES_x, 640);
     nh.param("Thermal/RES/y", Thermal.RES_y, 512);
     
+    ROS_INFO("The parameter used for the thermal camera is %d", Thermal.FOV_x);
     //getParam("Thermal",Thermal);
     //Try also if it does work this way
     
